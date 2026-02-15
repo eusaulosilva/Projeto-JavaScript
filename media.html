@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style.css" rel="stylesheet">
+    <script src="script.js"></script>
+    <!-- CSS E JS DA CAIXA DE ALERT - DA INTERNET-->
+    <script src="dist/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="dist/sweetalert2.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <title>MÉDIA</title>
+</head>
+
+<body class="degrade">
+    <center>
+        <main class="efeito-vidro entrada">
+            <h1>Média</h1>
+            <div class="input" id="imc">
+                
+                Notas<br>
+                 <input type="number" class="notas" min="0" >
+                 <br><button id="s" value="S" onclick="limparnota()"><img src="recycle-bin.png" alt=""></button><br>
+                <button id="limp" onclick="limpar9()">Limpar</button>  
+                <button id="envi" onclick="media()">Enviar</button>
+                <a href="index.html"><button id="volt">Voltar</button></a>
+                
+            </div>
+            <div class="result">
+                <p id="result"></P>
+
+            </div>
+
+
+        </main>
+    </center>
+</body>
+
+</html>

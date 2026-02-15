@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style.css" rel="stylesheet">
+    <script src="script.js"></script>
+    <!-- CSS E JS DA CAIXA DE ALERT - DA INTERNET-->
+    <script src="dist/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="dist/sweetalert2.min.css">
+    <title>TABUADA</title>
+
+</head>
+
+<body class="degrade">
+    <center>
+        <main class="efeito-vidro ">
+            <h1>Tabuada</h1>
+
+            <div class="input " id="imc">
+                Tabuada do <br><input type="number" id="inicio" min="0" >
+                <br><br>
+                <select type="button" class="ope" name="" id="opera">
+                    <option value="">Operadores</option>
+                    <option value="+">Adição</option>
+                    <option value="-">Subtração</option>
+                    <option value="*">Multiplição</option>
+                    <option value="/">Divisão</option>
+                </select>
+                <br> <button id="limp" onclick="limpar1()">Limpar</button>
+                <button id="envi" onclick="tabuada()">Enviar</button>
+                <a href="index.html"><button id="volt">Voltar</button></a>
+
+
+            </div>
+
+            <div class="resultado">
+                <p id="result"></P>
+
+            </div>
+
+        </main>
+    </center>
+
+</body>
+
+</html>

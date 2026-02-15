@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style.css" rel="stylesheet">
+    <script src="script.js"></script>
+    <!-- CSS E JS DA CAIXA DE ALERT - DA INTERNET-->
+    <script src="dist/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="dist/sweetalert2.min.css">
+    <title>COMISSÃO</title>
+</head>
+
+<body class="degrade">
+    <center>
+        <main class="efeito-vidro entrada">
+            <h1>Comissão</h1>
+          <div class="input" id="imc">
+                Salário<br>
+                 <input type="number" class="salario" min="0" > <br> <br>
+                Valor do carro<br>
+                 <input type="number" class="valor" min="0" >
+                 <br><button id="s" value="S" onclick="limparcamp()"><img src="recycle-bin.png" alt=""></button><br>
+                <button id="limp" onclick="limpar6()">Limpar</button>  
+                <button id="envi" onclick="comissao()">Enviar</button>
+                <a href="index.html"><button id="volt">Voltar</button></a>
+                
+            </div>
+            <div class="result">
+                <p id="result"></P>
+
+            </div>
+
+
+        </main>
+    </center>
+</body>
+
+</html>

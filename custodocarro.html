@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style.css" rel="stylesheet">
+    <script src="script.js"></script>
+    
+    <!-- CSS E JS DA CAIXA DE ALERT - DA INTERNET-->
+    <script src="dist/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="dist/sweetalert2.min.css">
+    
+    <title>CUSTO DO CARRO</title>
+    
+</head>
+<body class="degrade" >
+    <center>
+    <main class="efeito-vidro entrada" >
+        <h1>Custo Final</h1>
+       
+            <div class="input " id="imc"  >
+                Valor de Fabrica <br> <input class="custo" type="number" ><br /><br />
+                Porcentagem do Distribuidor <br> <input class="porcen" type="number"  placeholder="%" min="0" max="100"><br /><br />
+                Impostos <br> <input class="impos" type="number" placeholder="%" min="0" max="100"><br /><br />
+                
+                <button id="limp" onclick="limpar2()">Limpar</button>
+                <button id="envi" onclick="custo()">Enviar</button>
+                <a href="index.html"><button id="volt">Voltar</button></a>
+                
+            </div>
+            <div class="result">
+                <p id="result"></P>
+
+            </div>
+
+      
+    </main></center>
+</body>
+</html>
