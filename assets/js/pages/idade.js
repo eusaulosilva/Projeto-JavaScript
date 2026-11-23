@@ -7,15 +7,28 @@
     const MS_PER_HOUR = 1000 * 60 * 60;
     const MS_PER_DAY = MS_PER_HOUR * 24;
 
+    function isLeapYear(year) {
+        return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
+    }
+
+    function getBirthdayUTC(year, birthMonth, birthDay) {
+        const day = birthMonth === 1 && birthDay === 29 && !isLeapYear(year) ? 28 : birthDay;
+        return Date.UTC(year, birthMonth, day);
+    }
+
     function calculateAgeBreakdown(birthDateUTC, targetDateUTC) {
         const diffMs = targetDateUTC.getTime() - birthDateUTC.getTime();
         if (diffMs < 0) {
             throw new Error('A data final deve ser igual ou posterior à data de nascimento.');
         }
 
-        let years = targetDateUTC.getUTCFullYear() - birthDateUTC.getUTCFullYear();
-        const monthDiff = targetDateUTC.getUTCMonth() - birthDateUTC.getUTCMonth();
-        const dayDiff = targetDateUTC.getUTCDate() - birthDateUTC.getUTCDate();
+        const birthMonth = birthDateUTC.getUTCMonth();
+        const birthDay = birthDateUTC.getUTCDate();
+        const targetYear = targetDateUTC.getUTCFullYear();
+
+        let years = targetYear - birthDateUTC.getUTCFullYear();
+        const monthDiff = targetDateUTC.getUTCMonth() - birthMonth;
+        const dayDiff = targetDateUTC.getUTCDate() - birthDay;
 
         if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
             years -= 1;
@@ -23,8 +36,15 @@
 
         const totalDays = Math.floor(diffMs / MS_PER_DAY);
         const totalHours = Math.floor(diffMs / MS_PER_HOUR);
+        const totalWeeks = Math.floor(totalDays / 7);
 
-        return { years, totalDays, totalHours };
+        let nextBirthdayMs = getBirthdayUTC(targetYear, birthMonth, birthDay);
+        if (nextBirthdayMs < targetDateUTC.getTime()) {
+            nextBirthdayMs = getBirthdayUTC(targetYear + 1, birthMonth, birthDay);
+        }
+        const daysUntilNextBirthday = Math.round((nextBirthdayMs - targetDateUTC.getTime()) / MS_PER_DAY);
+
+        return { years, totalDays, totalHours, totalWeeks, daysUntilNextBirthday };
     }
 
     App.calculators.idade = calculateAgeBreakdown;
@@ -88,6 +108,16 @@
                           value: `${ui.formatInteger(res.totalDays)} dias`
                       };
 
+            const nextBdayText =
+                res.daysUntilNextBirthday === 0
+                    ? 'Hoje!'
+                    : `${ui.formatInteger(res.daysUntilNextBirthday)} ${res.daysUntilNextBirthday === 1 ? 'dia' : 'dias'}`;
+
+            const birthdayBanner =
+                res.daysUntilNextBirthday === 0
+                    ? '<span class="status-badge status-badge--success">Feliz aniversário!</span>'
+                    : '';
+
             ui.renderResult(
                 resultEl,
                 `
@@ -100,7 +130,16 @@
                         <span class="metric-label">${primaryMetric.label}</span>
                         <span class="metric-value is-highlight">${primaryMetric.value}</span>
                     </div>
+                    <div class="metric-box">
+                        <span class="metric-label">Semanas Vividas</span>
+                        <span class="metric-value">${ui.formatInteger(res.totalWeeks)}</span>
+                    </div>
+                    <div class="metric-box">
+                        <span class="metric-label">Próximo Aniversário</span>
+                        <span class="metric-value">${nextBdayText}</span>
+                    </div>
                 </div>
+                ${birthdayBanner}
                 `
             );
         });

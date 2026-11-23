@@ -46,6 +46,82 @@
     --transition-base: 220ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Tema Escuro Harmonizado (ativado pelo alternador de tema) */
+:root[data-theme="dark"] {
+    --surface-glass: rgba(11, 29, 40, 0.8);
+    --surface-glass-strong: rgba(11, 29, 40, 0.92);
+    --surface-subtle: rgba(255, 255, 255, 0.06);
+    --surface-input: rgba(8, 22, 31, 0.78);
+
+    --border-subtle: rgba(148, 204, 218, 0.16);
+    --border-strong: rgba(148, 204, 218, 0.34);
+    --border-glass: rgba(148, 204, 218, 0.22);
+    --border-focus: #22d3ee;
+
+    --text-primary: #f1f9fa;
+    --text-secondary: #bfd7df;
+    --text-muted: #86aab7;
+
+    --accent: #22e6a4;
+    --accent-soft: rgba(34, 230, 164, 0.14);
+    --btn-primary: #22d3ee;
+    --btn-primary-hover: #06b6d4;
+
+    --success: #34d399;
+    --success-bg: rgba(16, 185, 129, 0.16);
+    --warning: #fbbf24;
+    --warning-bg: rgba(245, 158, 11, 0.16);
+    --danger: #fb7185;
+    --danger-bg: rgba(244, 63, 94, 0.16);
+    --info: #38bdf8;
+    --info-bg: rgba(18, 199, 252, 0.16);
+
+    --shadow-card: 0 18px 44px rgba(0, 0, 0, 0.42);
+    --shadow-sm: 0 4px 14px rgba(0, 0, 0, 0.25);
+}
+
+:root[data-theme="dark"] .btn-primary,
+:root[data-theme="dark"] .filter-pill.is-active,
+:root[data-theme="dark"] .radio-card input:checked + label {
+    color: #06202a;
+}
+
+:root[data-theme="dark"] .filter-pill {
+    background: rgba(11, 29, 40, 0.72);
+    border-color: var(--border-subtle);
+}
+
+:root[data-theme="dark"] .filter-pill:hover {
+    background: rgba(11, 29, 40, 0.92);
+}
+
+:root[data-theme="dark"] .hub-footer {
+    background: rgba(11, 29, 40, 0.78);
+    border-top-color: var(--border-subtle);
+}
+
+:root[data-theme="dark"] .result-panel.has-result,
+:root[data-theme="dark"] .toast {
+    background: rgba(8, 22, 31, 0.94);
+}
+
+:root[data-theme="dark"] .select-control option {
+    background: #0b1d28;
+    color: var(--text-primary);
+}
+
+:root[data-theme="dark"] input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(0.85);
+}
+
+:root[data-theme="dark"] .bar-track {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+:root[data-theme="dark"] .search-box input:focus {
+    background: rgba(8, 22, 31, 0.94);
+}
+
 /* Reset & Base */
 *,
 *::before,
@@ -410,6 +486,87 @@ select {
 .back-link svg {
     width: 15px;
     height: 15px;
+}
+
+/* Alternador de Tema (Claro / Escuro) */
+.theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-sm);
+    background: var(--surface-glass);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--border-glass);
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: background-color var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
+}
+
+.theme-toggle:hover {
+    background: var(--surface-glass-strong);
+    border-color: var(--border-strong);
+    color: var(--accent);
+}
+
+.theme-toggle svg {
+    width: 17px;
+    height: 17px;
+}
+
+.theme-toggle--floating {
+    position: fixed;
+    top: 1.15rem;
+    right: 1.15rem;
+    z-index: 50;
+    box-shadow: var(--shadow-sm);
+}
+
+/* Botão discreto para copiar resultado */
+.result-footer {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btn-copy {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.32rem 0.65rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-subtle);
+    background: transparent;
+    color: var(--text-muted);
+    font-size: 0.78rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: color var(--transition-fast), border-color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.btn-copy:hover {
+    color: var(--text-primary);
+    border-color: var(--border-strong);
+    background: var(--surface-subtle);
+}
+
+.btn-copy svg {
+    width: 13px;
+    height: 13px;
+}
+
+/* Form Two-Column Row */
+.field-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+}
+
+@media (max-width: 480px) {
+    .field-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 .tool-panel {

@@ -52,7 +52,20 @@
 
         if (searchInput) {
             searchInput.addEventListener('input', applyFilters);
+
+            document.addEventListener('keydown', (event) => {
+                const targetTag = event.target && event.target.tagName;
+                const isTyping = targetTag === 'INPUT' || targetTag === 'TEXTAREA' || targetTag === 'SELECT';
+
+                if (event.key === '/' && !isTyping) {
+                    event.preventDefault();
+                    searchInput.focus();
+                } else if (event.key === 'Escape' && document.activeElement === searchInput) {
+                    searchInput.value = '';
+                    applyFilters();
+                    searchInput.blur();
+                }
+            });
         }
     });
 })();
-

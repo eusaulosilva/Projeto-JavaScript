@@ -4,6 +4,8 @@
     const App = (global.App = global.App || {});
     App.calculators = App.calculators || {};
 
+    const STORAGE_KEY = 'projeto-js:media-grades';
+
     function calculateAverage(grades) {
         if (!Array.isArray(grades) || grades.length === 0) {
             return { count: 0, sum: 0, average: 0 };
@@ -31,7 +33,16 @@
         const { ui, validators } = App;
         ui.bindClearOnInput(form);
 
-        let grades = [];
+        const saved = ui.storage.get(STORAGE_KEY, []);
+        let grades = Array.isArray(saved) ? saved.filter((n) => typeof n === 'number' && Number.isFinite(n)) : [];
+
+        function persist() {
+            if (grades.length === 0) {
+                ui.storage.remove(STORAGE_KEY);
+            } else {
+                ui.storage.set(STORAGE_KEY, grades);
+            }
+        }
 
         function renderSummary() {
             if (grades.length === 0) {
@@ -88,6 +99,7 @@
             }
 
             grades.push(nota.value);
+            persist();
             notaInput.value = '';
             notaInput.focus();
             renderSummary();
@@ -99,6 +111,7 @@
             const index = Number(btn.dataset.removeIndex);
             if (Number.isInteger(index) && index >= 0 && index < grades.length) {
                 grades.splice(index, 1);
+                persist();
                 renderSummary();
             }
         });
@@ -112,9 +125,14 @@
         resetBtn.addEventListener('click', () => {
             form.reset();
             grades = [];
+            persist();
             ui.clearFormErrors(form);
             ui.resetResult(resultEl, 'Adicione uma ou mais notas para calcular a média.');
             notaInput.focus();
         });
+
+        if (grades.length > 0) {
+            renderSummary();
+        }
     });
 })(typeof window !== 'undefined' ? window : globalThis);

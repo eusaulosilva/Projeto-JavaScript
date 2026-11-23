@@ -5,6 +5,7 @@
     App.calculators = App.calculators || {};
 
     const COMMISSION_RATE = 0.05;
+    const STORAGE_KEY = 'projeto-js:comissao-state';
 
     function calculateCommissionSummary(baseSalary, carValues) {
         const count = carValues.length;
@@ -36,8 +37,27 @@
         const { ui, validators } = App;
         ui.bindClearOnInput(form);
 
-        let sales = [];
-        let lastSalary = 0;
+        const saved = ui.storage.get(STORAGE_KEY, null);
+        let sales =
+            saved && Array.isArray(saved.sales)
+                ? saved.sales.filter((n) => typeof n === 'number' && Number.isFinite(n) && n > 0)
+                : [];
+        let lastSalary =
+            saved && typeof saved.salary === 'number' && Number.isFinite(saved.salary) && saved.salary >= 0
+                ? saved.salary
+                : 0;
+
+        if (sales.length > 0 && salarioInput) {
+            salarioInput.value = String(lastSalary);
+        }
+
+        function persist() {
+            if (sales.length === 0) {
+                ui.storage.remove(STORAGE_KEY);
+            } else {
+                ui.storage.set(STORAGE_KEY, { salary: lastSalary, sales });
+            }
+        }
 
         function renderSummary() {
             if (sales.length === 0) {
@@ -103,6 +123,7 @@
 
             lastSalary = salario.value;
             sales.push(valorCarro.value);
+            persist();
             valorCarroInput.value = '';
             valorCarroInput.focus();
             renderSummary();
@@ -114,6 +135,7 @@
             const index = Number(btn.dataset.removeIndex);
             if (Number.isInteger(index) && index >= 0 && index < sales.length) {
                 sales.splice(index, 1);
+                persist();
                 renderSummary();
             }
         });
@@ -128,9 +150,14 @@
             form.reset();
             sales = [];
             lastSalary = 0;
+            persist();
             ui.clearFormErrors(form);
             ui.resetResult(resultEl, 'Informe o salário fixo e adicione o valor dos carros vendidos.');
             salarioInput.focus();
         });
+
+        if (sales.length > 0) {
+            renderSummary();
+        }
     });
 })(typeof window !== 'undefined' ? window : globalThis);

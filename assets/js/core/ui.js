@@ -2,6 +2,7 @@
     'use strict';
 
     const App = (global.App = global.App || {});
+    const THEME_STORAGE_KEY = 'projeto-js:theme';
 
     const currencyFormatter = new Intl.NumberFormat('pt-BR', {
         style: 'currency',
@@ -11,6 +12,34 @@
     const integerFormatter = new Intl.NumberFormat('pt-BR', {
         maximumFractionDigits: 0
     });
+
+    const storage = {
+        get(key, fallback) {
+            try {
+                if (!global.localStorage) return fallback;
+                const raw = global.localStorage.getItem(key);
+                return raw === null ? fallback : JSON.parse(raw);
+            } catch (_) {
+                return fallback;
+            }
+        },
+        set(key, value) {
+            try {
+                if (!global.localStorage) return;
+                global.localStorage.setItem(key, JSON.stringify(value));
+            } catch (_) {
+                // Ignora indisponibilidade de storage (ex.: modo privado restrito)
+            }
+        },
+        remove(key) {
+            try {
+                if (!global.localStorage) return;
+                global.localStorage.removeItem(key);
+            } catch (_) {
+                // noop
+            }
+        }
+    };
 
     function getToastContainer() {
         let container = document.querySelector('.toast-container');
@@ -74,6 +103,34 @@
         if (opts.duration > 0) {
             global.setTimeout(dismiss, opts.duration);
         }
+    }
+
+    async function copyText(text) {
+        try {
+            if (global.navigator && global.navigator.clipboard && global.navigator.clipboard.writeText) {
+                await global.navigator.clipboard.writeText(String(text));
+                return true;
+            }
+        } catch (_) {
+            // fallback abaixo
+        }
+
+        if (typeof document === 'undefined') return false;
+        const textarea = document.createElement('textarea');
+        textarea.value = String(text);
+        textarea.setAttribute('readonly', '');
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.select();
+        let copied = false;
+        try {
+            copied = document.execCommand('copy');
+        } catch (_) {
+            copied = false;
+        }
+        textarea.remove();
+        return copied;
     }
 
     function formatCurrency(value) {
@@ -154,8 +211,61 @@
         });
     }
 
+    function applyTheme(theme) {
+        if (typeof document === 'undefined') return;
+        const normalized = theme === 'dark' ? 'dark' : 'light';
+        document.documentElement.dataset.theme = normalized;
+        storage.set(THEME_STORAGE_KEY, normalized);
+
+        const toggleBtn = document.getElementById('theme-toggle');
+        if (toggleBtn) {
+            const isDark = normalized === 'dark';
+            toggleBtn.setAttribute('aria-label', isDark ? 'Mudar para tema claro' : 'Mudar para tema escuro');
+            toggleBtn.setAttribute('title', isDark ? 'Tema claro' : 'Tema escuro');
+            toggleBtn.innerHTML = isDark
+                ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>'
+                : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>';
+        }
+    }
+
+    function initThemeToggle() {
+        if (typeof document === 'undefined') return;
+        const saved = storage.get(THEME_STORAGE_KEY, 'light');
+        applyTheme(saved);
+
+        if (document.getElementById('theme-toggle')) return;
+
+        const button = document.createElement('button');
+        button.id = 'theme-toggle';
+        button.type = 'button';
+        button.className = 'theme-toggle';
+
+        button.addEventListener('click', () => {
+            const current = document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
+            applyTheme(current === 'dark' ? 'light' : 'dark');
+        });
+
+        const topNav = document.querySelector('.top-nav');
+        if (topNav) {
+            topNav.appendChild(button);
+        } else {
+            button.classList.add('theme-toggle--floating');
+            document.body.appendChild(button);
+        }
+
+        applyTheme(saved);
+    }
+
+    if (typeof document !== 'undefined') {
+        const savedTheme = storage.get(THEME_STORAGE_KEY, 'light');
+        document.documentElement.dataset.theme = savedTheme === 'dark' ? 'dark' : 'light';
+        document.addEventListener('DOMContentLoaded', initThemeToggle);
+    }
+
     App.ui = {
+        storage,
         notify,
+        copyText,
         formatCurrency,
         formatNumber,
         formatCompactNumber,
@@ -165,6 +275,7 @@
         resetResult,
         setFieldError,
         clearFormErrors,
-        bindClearOnInput
+        bindClearOnInput,
+        applyTheme
     };
 })(typeof window !== 'undefined' ? window : globalThis);

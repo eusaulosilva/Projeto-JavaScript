@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Calculadora — Paleta Harmonizada (Oceano & Menta)
+   Calculadora — Paleta Harmonizada (Claro / Escuro Minimalista)
    ========================================================================== */
 
 .calc-shell {
@@ -10,23 +10,62 @@
     background: var(--surface-subtle);
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-md);
-    padding: 1rem 1.15rem;
-    margin-bottom: 0.9rem;
+    padding: 0.85rem 1rem 0.95rem;
+    margin-bottom: 0.85rem;
     text-align: right;
-    min-height: 90px;
+    min-height: 98px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    gap: 0.35rem;
     overflow: hidden;
+}
+
+.calc-display-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+
+.calc-display-actions {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    flex-shrink: 0;
+}
+
+.calc-mini-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 26px;
+    padding: 0 0.45rem;
+    border-radius: 6px;
+    border: 1px solid var(--border-subtle);
+    background: transparent;
+    color: var(--text-muted);
+    font-size: 0.74rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: color var(--transition-fast), border-color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.calc-mini-btn:hover {
+    color: var(--text-primary);
+    border-color: var(--border-strong);
+    background: var(--surface-glass);
 }
 
 .calc-expression {
     font-family: var(--font-mono);
-    font-size: 0.86rem;
+    font-size: 0.84rem;
     color: var(--text-muted);
-    min-height: 1.3em;
+    min-height: 1.25em;
     overflow-x: auto;
     white-space: nowrap;
+    flex: 1;
+    text-align: right;
 }
 
 .calc-output {
@@ -47,12 +86,12 @@
 }
 
 .calc-key {
-    height: 56px;
+    height: 54px;
     border-radius: var(--radius-sm);
     border: 1px solid var(--border-subtle);
-    background: #ffffff;
+    background: var(--surface-input);
     color: var(--text-primary);
-    font-size: 1.18rem;
+    font-size: 1.14rem;
     font-weight: 500;
     cursor: pointer;
     display: grid;
@@ -93,13 +132,11 @@
 }
 
 .calc-key--equals {
-    grid-row: span 2;
-    height: auto;
     background: var(--btn-primary);
     border-color: var(--btn-primary);
     color: #ffffff;
     font-weight: 700;
-    font-size: 1.35rem;
+    font-size: 1.3rem;
 }
 
 .calc-key--equals:hover {
@@ -107,24 +144,84 @@
     border-color: var(--btn-primary-hover);
 }
 
-.calc-key--zero {
-    grid-column: span 2;
+:root[data-theme="dark"] .calc-key--equals {
+    color: #06202a;
 }
 
 .calc-hint {
-    margin-top: 1rem;
+    margin-top: 0.9rem;
     text-align: center;
-    font-size: 0.78rem;
+    font-size: 0.76rem;
     color: var(--text-muted);
 }
 
 .calc-hint kbd {
     display: inline-block;
-    padding: 0.1rem 0.4rem;
+    padding: 0.08rem 0.35rem;
     border-radius: 4px;
     border: 1px solid var(--border-subtle);
     background: var(--surface-subtle);
     font-family: var(--font-mono);
-    font-size: 0.74rem;
+    font-size: 0.72rem;
     color: var(--text-secondary);
+}
+
+/* Histórico Recente */
+.calc-history {
+    margin-top: 1rem;
+    padding-top: 0.85rem;
+    border-top: 1px solid var(--border-subtle);
+}
+
+.calc-history[hidden] {
+    display: none;
+}
+
+.calc-history-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.45rem;
+}
+
+.calc-history-title {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--text-muted);
+}
+
+.calc-history-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.calc-history-item {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.42rem 0.65rem;
+    border-radius: 6px;
+    border: 1px solid transparent;
+    background: var(--surface-subtle);
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    cursor: pointer;
+    text-align: left;
+    transition: border-color var(--transition-fast), color var(--transition-fast);
+}
+
+.calc-history-item:hover {
+    border-color: var(--border-strong);
+    color: var(--text-primary);
+}
+
+.calc-history-item strong {
+    color: var(--accent);
 }
