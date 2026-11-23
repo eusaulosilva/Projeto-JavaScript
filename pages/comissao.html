@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calculadora de comissão de 5% sobre vendas de veículos com acúmulo de vendas.">
+    <title>Comissão de Vendas — Projeto JavaScript</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <script defer src="../assets/js/core/ui.js"></script>
+    <script defer src="../assets/js/core/validators.js"></script>
+    <script defer src="../assets/js/pages/comissao.js"></script>
+</head>
+
+<body>
+    <div class="page-shell">
+        <nav class="top-nav" aria-label="Navegação">
+            <a class="back-link" href="../index.html">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+                Voltar ao início
+            </a>
+        </nav>
+
+        <main class="tool-panel">
+            <header class="tool-panel-header">
+                <h1>Comissão de Vendas</h1>
+                <p>Informe o salário fixo e adicione cada carro vendido para somar 5% de comissão por venda.</p>
+            </header>
+
+            <form id="tool-form" class="tool-form" novalidate>
+                <div class="field">
+                    <label for="salario">Salário Fixo (R$)</label>
+                    <input id="salario" name="salario" type="number" class="input-control" step="any" min="0" inputmode="decimal" placeholder="Ex.: 2500.00" required>
+                </div>
+
+                <div class="field">
+                    <label for="valor-carro">Valor do Carro Vendido (R$)</label>
+                    <div class="field-row">
+                        <input id="valor-carro" name="valorCarro" type="number" class="input-control" step="any" min="0" inputmode="decimal" placeholder="Ex.: 65000.00" required>
+                        <button type="button" id="btn-clear-car" class="btn btn-icon" title="Limpar apenas o valor do carro" aria-label="Limpar campo valor do carro">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                <polyline points="3 6 5 6 21 6"></polyline>
+                                <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"></path>
+                                <path d="M10 11v6"></path>
+                                <path d="M14 11v6"></path>
+                                <path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" id="btn-reset" class="btn btn-secondary">Limpar Tudo</button>
+                    <button type="submit" class="btn btn-primary">Adicionar Venda</button>
+                </div>
+            </form>
+
+            <section id="result" class="result-panel" aria-live="polite">
+                <p class="result-placeholder">Informe o salário fixo e adicione o valor dos carros vendidos.</p>
+            </section>
+        </main>
+    </div>
+</body>
+
+</html>

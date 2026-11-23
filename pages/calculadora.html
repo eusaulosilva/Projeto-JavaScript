@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calculadora aritmética interativa com histórico, parser seguro e suporte a teclado.">
+    <title>Calculadora — Projeto JavaScript</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="../assets/css/calculator.css">
+    <script defer src="../assets/js/core/ui.js"></script>
+    <script defer src="../assets/js/pages/calculadora.js"></script>
+</head>
+
+<body>
+    <div class="page-shell calc-shell">
+        <nav class="top-nav" aria-label="Navegação">
+            <a class="back-link" href="../index.html">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+                Voltar ao início
+            </a>
+        </nav>
+
+        <main class="tool-panel">
+            <header class="tool-panel-header">
+                <h1>Calculadora</h1>
+                <p>Operações básicas com avaliação segura e suporte ao teclado.</p>
+            </header>
+
+            <section class="calc-display" aria-label="Visor da calculadora" aria-live="polite">
+                <div id="calc-expression" class="calc-expression"></div>
+                <output id="calc-output" class="calc-output">0</output>
+            </section>
+
+            <div id="calc-keypad" class="calc-grid" role="group" aria-label="Teclado numérico">
+                <button type="button" class="calc-key calc-key--action" data-action="clear" aria-label="Limpar tudo">C</button>
+                <button type="button" class="calc-key calc-key--action" data-action="backspace" aria-label="Apagar último dígito">⌫</button>
+                <button type="button" class="calc-key calc-key--operator" data-value="/" aria-label="Dividir">÷</button>
+                <button type="button" class="calc-key calc-key--operator" data-value="*" aria-label="Multiplicar">×</button>
+
+                <button type="button" class="calc-key" data-value="7">7</button>
+                <button type="button" class="calc-key" data-value="8">8</button>
+                <button type="button" class="calc-key" data-value="9">9</button>
+                <button type="button" class="calc-key calc-key--operator" data-value="-" aria-label="Subtrair">−</button>
+
+                <button type="button" class="calc-key" data-value="4">4</button>
+                <button type="button" class="calc-key" data-value="5">5</button>
+                <button type="button" class="calc-key" data-value="6">6</button>
+                <button type="button" class="calc-key calc-key--operator" data-value="+" aria-label="Somar">+</button>
+
+                <button type="button" class="calc-key" data-value="1">1</button>
+                <button type="button" class="calc-key" data-value="2">2</button>
+                <button type="button" class="calc-key" data-value="3">3</button>
+                <button type="button" class="calc-key calc-key--equals" data-action="equals" aria-label="Calcular resultado">=</button>
+
+                <button type="button" class="calc-key calc-key--zero" data-value="0">0</button>
+                <button type="button" class="calc-key" data-value="." aria-label="Ponto decimal">.</button>
+            </div>
+
+            <p class="calc-hint">
+                Atalhos: <kbd>0–9</kbd> <kbd>+ − * /</kbd> <kbd>Enter</kbd> <kbd>Backspace</kbd> <kbd>Esc</kbd>
+            </p>
+        </main>
+    </div>
+</body>
+
+</html>

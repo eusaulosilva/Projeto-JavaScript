@@ -1,49 +1,268 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="css/bootstrap.min.css" rel="stylesheet"
->
-    <link href="style.css" rel="stylesheet">
-    <script src="script.js"></script>
-
-    <title>PROJETO JAVASCRIPT</title>
-
+    <meta name="description" content="Coleção interativa de 15 calculadoras e utilitários desenvolvidos em JavaScript puro, HTML5 semântico e CSS moderno.">
+    <title>Projeto JavaScript — Central de Ferramentas</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <script defer src="assets/js/pages/hub.js"></script>
 </head>
 
-<body class="degrade botoes">
-    <main>
-        <div class="conteiner">
+<body>
+    <div class="hub-wrapper">
+        <header class="hub-header">
+            <span class="hub-badge">15 Ferramentas Interativas</span>
             <h1>Projeto JavaScript</h1>
-            <div align="center">
-                <div class="button" id="div">
-                    <a href="imc.html"><button class="butao">Imc</button></a>
-                    <a href="tabuada.html"><button class="butao">Tabuada</button></a>
-                    <a href="custodocarro.html"><button class="butao">Custo do Carro</button></a>
-                    <a href="reajuste.html"><button class="butao">Reajuste</button></a>
-                    <a href="eleicao.html"><button class="butao">Votos</button></a>
-                    <a href="comissao.html"><button class="butao">Comissão</button></a>
-                    <a href="pesoideal.html"><button class="butao">Peso Ideal</button></a>
-                    <a href="garcom.html"><button class="butao">10% garçom</button></a>
-                    <a href="dobro.html"><button class="butao">Dobro</button></a>
-                    <a href="media.html"><button class="butao">Média</button></a>
-                    <a href="calculadora.html"><button class="butao">Calculadora</button></a>
-                    <a href="parimpar.html"><button class="butao">Par/Ímpar</button></a>
-                    <a href="horasvividas.html"><button class="butao">Idade em Horas</button></a>
-                    <a href="diasvividos.html"><button class="butao">Idade em Dias</button></a>
-                    <a href="antecessor.html"><button class="butao">Antecessor</button></a>
-                    
-                   
-                    
-                    
+            <p class="hub-subtitle">
+                Calculadoras e utilitários práticos para o dia a dia, construídos com HTML5 semântico, CSS moderno e JavaScript puro.
+            </p>
+        </header>
 
-                </div>
+        <section class="hub-controls" aria-label="Filtrar ferramentas">
+            <div class="search-box">
+                <label class="sr-only" for="tool-search">Buscar ferramenta</label>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <input
+                    id="tool-search"
+                    type="search"
+                    placeholder="Buscar ferramenta (ex.: IMC, calculadora, votos)..."
+                    autocomplete="off"
+                >
             </div>
-        </div>
-    </main>
+
+            <div class="filter-pills" role="group" aria-label="Categorias">
+                <button type="button" class="filter-pill is-active" data-filter="all" aria-pressed="true">Todas</button>
+                <button type="button" class="filter-pill" data-filter="matematica" aria-pressed="false">Matemática</button>
+                <button type="button" class="filter-pill" data-filter="financas" aria-pressed="false">Finanças</button>
+                <button type="button" class="filter-pill" data-filter="saude" aria-pressed="false">Saúde</button>
+                <button type="button" class="filter-pill" data-filter="utilidades" aria-pressed="false">Datas &amp; Utilidades</button>
+            </div>
+        </section>
+
+        <main>
+            <div class="tools-grid">
+                <a class="tool-card" href="pages/calculadora.html" data-category="matematica" data-keywords="soma subtracao multiplicacao divisao conta">
+                    <span class="tool-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <rect x="4" y="2" width="16" height="20" rx="2"></rect>
+                            <line x1="8" y1="6" x2="16" y2="6"></line>
+                            <line x1="8" y1="11" x2="8.01" y2="11"></line>
+                            <line x1="12" y1="11" x2="12.01" y2="11"></line>
+                            <line x1="16" y1="11" x2="16.01" y2="11"></line>
+                            <line x1="8" y1="15" x2="8.01" y2="15"></line>
+                            <line x1="12" y1="15" x2="12.01" y2="15"></line>
+                            <line x1="16" y1="15" x2="16.01" y2="15"></line>
+                        </svg>
+                    </span>
+                    <div class="tool-info">
+                        <h2>Calculadora</h2>
+                        <p>Operações básicas e atalhos de teclado</p>
+                    </div>
+                </a>
+
+                <a class="tool-card" href="pages/tabuada.html" data-category="matematica" data-keywords="multiplicar dividir somar subtrair">
+                    <span class="tool-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <line x1="5" y1="5" x2="19" y2="19"></line>
+                            <line x1="19" y1="5" x2="5" y2="19"></line>
+                        </svg>
+                    </span>
+                    <div class="tool-info">
+                        <h2>Tabuada</h2>
+                        <p>Adição, subtração, multiplicação e divisão</p>
+                    </div>
+                </a>
+
+                <a class="tool-card" href="pages/media.html" data-category="matematica" data-keywords="notas escolar boletim soma">
+                    <span class="tool-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <line x1="18" y1="20" x2="18" y2="10"></line>
+                            <line x1="12" y1="20" x2="12" y2="4"></line>
+                            <line x1="6" y1="20" x2="6" y2="14"></line>
+                        </svg>
+                    </span>
+                    <div class="tool-info">
+                        <h2>Média de Notas</h2>
+                        <p>Soma e média aritmética dinâmica</p>
+                    </div>
+                </a>
+
+                <a class="tool-card" href="pages/dobro.html" data-category="matematica" data-keywords="multiplicar dois numero">
+                    <span class="tool-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <polyline points="17 11 12 6 7 11"></polyline>
+                            <polyline points="17 18 12 13 7 18"></polyline>
+                        </svg>
+                    </span>
+                    <div class="tool-info">
+                        <h2>Dobro</h2>
+                        <p>Dobro de qualquer número real</p>
+                    </div>
+                </a>
+
+                <a class="tool-card" href="pages/par-impar.html" data-category="matematica" data-keywords="paridade inteiro numero">
+                    <span class="tool-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <circle cx="12" cy="12" r="9"></circle>
+                            <path d="M12 3a9 9 0 0 1 0 18z"></path>
+                        </svg>
+                    </span>
+                    <div class="tool-info">
+                        <h2>Par ou Ímpar</h2>
+                        <p>Verificação rápida de paridade</p>
+                    </div>
+                </a>
+
+                <a class="tool-card" href="pages/antecessor.html" data-category="matematica" data-keywords="sucessor anterior proximo numero">
+                    <span class="tool-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
+                    </span>
+                    <div class="tool-info">
+                        <h2>Antecessor</h2>
+                        <p>Antecessor e sucessor de inteiros</p>
+                    </div>
+                </a>
+
+                <a class="tool-card" href="pages/custo-carro.html" data-category="financas" data-keywords="veiculo fabrica impostos distribuidor preco">
+                    <span class="tool-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <path d="M5 17h14v-5l-2-5H7l-2 5v5z"></path>
+                            <circle cx="7.5" cy="17.5" r="1.5"></circle>
+                            <circle cx="16.5" cy="17.5" r="1.5"></circle>
+                        </svg>
+                    </span>
+                    <div class="tool-info">
+                        <h2>Custo do Carro</h2>
+                        <p>Fábrica, distribuidor e impostos</p>
+                    </div>
+                </a>
+
+                <a class="tool-card" href="pages/reajuste.html" data-category="financas" data-keywords="salario aumento percentual dinheiro">
+                    <span class="tool-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                            <polyline points="17 6 23 6 23 12"></polyline>
+                        </svg>
+                    </span>
+                    <div class="tool-info">
+                        <h2>Reajuste Salarial</h2>
+                        <p>Cálculo de aumento por percentual</p>
+                    </div>
+                </a>
+
+                <a class="tool-card" href="pages/comissao.html" data-category="financas" data-keywords="vendas carros vendedor salario 5%">
+                    <span class="tool-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <line x1="12" y1="1" x2="12" y2="23"></line>
+                            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                        </svg>
+                    </span>
+                    <div class="tool-info">
+                        <h2>Comissão de Vendas</h2>
+                        <p>Acúmulo de 5% por carro vendido</p>
+                    </div>
+                </a>
+
+                <a class="tool-card" href="pages/garcom.html" data-category="financas" data-keywords="gorjeta restaurante conta servico 10%">
+                    <span class="tool-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+                            <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+                            <line x1="6" y1="1" x2="6" y2="4"></line>
+                            <line x1="10" y1="1" x2="10" y2="4"></line>
+                            <line x1="14" y1="1" x2="14" y2="4"></line>
+                        </svg>
+                    </span>
+                    <div class="tool-info">
+                        <h2>10% do Garçom</h2>
+                        <p>Taxa de serviço e total da conta</p>
+                    </div>
+                </a>
+
+                <a class="tool-card" href="pages/imc.html" data-category="saude" data-keywords="indice massa corporal peso altura oms">
+                    <span class="tool-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                        </svg>
+                    </span>
+                    <div class="tool-info">
+                        <h2>IMC</h2>
+                        <p>Índice de massa corporal (OMS)</p>
+                    </div>
+                </a>
+
+                <a class="tool-card" href="pages/peso-ideal.html" data-category="saude" data-keywords="altura masculino feminino kg">
+                    <span class="tool-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <path d="M12 3v18"></path>
+                            <path d="M5 7h14"></path>
+                            <path d="M7 21h10"></path>
+                        </svg>
+                    </span>
+                    <div class="tool-info">
+                        <h2>Peso Ideal</h2>
+                        <p>Referência por altura e sexo</p>
+                    </div>
+                </a>
+
+                <a class="tool-card" href="pages/eleicao.html" data-category="utilidades" data-keywords="votos validos nulos brancos apuracao percentual">
+                    <span class="tool-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <polyline points="9 11 12 14 22 4"></polyline>
+                            <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+                        </svg>
+                    </span>
+                    <div class="tool-info">
+                        <h2>Apuração de Votos</h2>
+                        <p>Percentuais de válidos, nulos e brancos</p>
+                    </div>
+                </a>
+
+                <a class="tool-card" href="pages/dias-vividos.html" data-category="utilidades" data-keywords="idade nascimento calendario data tempo">
+                    <span class="tool-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <rect x="3" y="4" width="18" height="18" rx="2"></rect>
+                            <line x1="16" y1="2" x2="16" y2="6"></line>
+                            <line x1="8" y1="2" x2="8" y2="6"></line>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                        </svg>
+                    </span>
+                    <div class="tool-info">
+                        <h2>Idade em Dias</h2>
+                        <p>Total de dias entre duas datas</p>
+                    </div>
+                </a>
+
+                <a class="tool-card" href="pages/horas-vividas.html" data-category="utilidades" data-keywords="idade nascimento relogio tempo">
+                    <span class="tool-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                    </span>
+                    <div class="tool-info">
+                        <h2>Idade em Horas</h2>
+                        <p>Total de horas entre duas datas</p>
+                    </div>
+                </a>
+
+                <p id="empty-state" class="empty-state" hidden>
+                    Nenhuma ferramenta encontrada para o filtro atual. Tente outro termo de busca.
+                </p>
+            </div>
+        </main>
+    </div>
+
+    <footer class="hub-footer">
+        Projeto JavaScript &middot; Arquitetura modular em HTML5, CSS3 e JavaScript puro
+    </footer>
 </body>
 
 </html>

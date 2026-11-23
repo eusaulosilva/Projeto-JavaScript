@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Gerador interativo de tabuada para adição, subtração, multiplicação e divisão.">
+    <title>Tabuada — Projeto JavaScript</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <script defer src="../assets/js/core/ui.js"></script>
+    <script defer src="../assets/js/core/validators.js"></script>
+    <script defer src="../assets/js/pages/tabuada.js"></script>
+</head>
+
+<body>
+    <div class="page-shell">
+        <nav class="top-nav" aria-label="Navegação">
+            <a class="back-link" href="../index.html">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+                Voltar ao início
+            </a>
+        </nav>
+
+        <main class="tool-panel">
+            <header class="tool-panel-header">
+                <h1>Tabuada</h1>
+                <p>Escolha um número inteiro e a operação desejada para gerar a tabuada de 0 a 10.</p>
+            </header>
+
+            <form id="tool-form" class="tool-form" novalidate>
+                <div class="field">
+                    <label for="numero">Tabuada do número</label>
+                    <input id="numero" name="numero" type="number" class="input-control" step="1" inputmode="numeric" placeholder="Ex.: 7" required>
+                </div>
+
+                <div class="field">
+                    <label for="operador">Operação</label>
+                    <select id="operador" name="operador" class="select-control" required>
+                        <option value="">Selecione um operador...</option>
+                        <option value="+">Adição (+)</option>
+                        <option value="-">Subtração (−)</option>
+                        <option value="*">Multiplicação (×)</option>
+                        <option value="/">Divisão (÷)</option>
+                    </select>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" id="btn-reset" class="btn btn-secondary">Limpar</button>
+                    <button type="submit" class="btn btn-primary">Gerar Tabuada</button>
+                </div>
+            </form>
+
+            <section id="result" class="result-panel" aria-live="polite">
+                <p class="result-placeholder">Preencha os dados acima para ver o resultado.</p>
+            </section>
+        </main>
+    </div>
+</body>
+
+</html>

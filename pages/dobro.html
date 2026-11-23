@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calcule o dobro de qualquer número real.">
+    <title>Dobro de um Número — Projeto JavaScript</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <script defer src="../assets/js/core/ui.js"></script>
+    <script defer src="../assets/js/core/validators.js"></script>
+    <script defer src="../assets/js/pages/dobro.js"></script>
+</head>
+
+<body>
+    <div class="page-shell">
+        <nav class="top-nav" aria-label="Navegação">
+            <a class="back-link" href="../index.html">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+                Voltar ao início
+            </a>
+        </nav>
+
+        <main class="tool-panel">
+            <header class="tool-panel-header">
+                <h1>Dobro de um Número</h1>
+                <p>Informe qualquer número (inteiro, decimal ou negativo) para descobrir o seu dobro.</p>
+            </header>
+
+            <form id="tool-form" class="tool-form" novalidate>
+                <div class="field">
+                    <label for="numero">Número</label>
+                    <input id="numero" name="numero" type="number" class="input-control" step="any" inputmode="decimal" placeholder="Ex.: 42.5" required>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" id="btn-reset" class="btn btn-secondary">Limpar</button>
+                    <button type="submit" class="btn btn-primary">Calcular Dobro</button>
+                </div>
+            </form>
+
+            <section id="result" class="result-panel" aria-live="polite">
+                <p class="result-placeholder">Preencha os dados acima para ver o resultado.</p>
+            </section>
+        </main>
+    </div>
+</body>
+
+</html>

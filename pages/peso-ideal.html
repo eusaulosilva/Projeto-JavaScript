@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calculadora de peso ideal estimada pela altura em metros e sexo biológico.">
+    <title>Peso Ideal — Projeto JavaScript</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <script defer src="../assets/js/core/ui.js"></script>
+    <script defer src="../assets/js/core/validators.js"></script>
+    <script defer src="../assets/js/pages/peso-ideal.js"></script>
+</head>
+
+<body>
+    <div class="page-shell">
+        <nav class="top-nav" aria-label="Navegação">
+            <a class="back-link" href="../index.html">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+                Voltar ao início
+            </a>
+        </nav>
+
+        <main class="tool-panel">
+            <header class="tool-panel-header">
+                <h1>Peso Ideal</h1>
+                <p>Informe sua altura em metros e selecione uma opção para calcular o peso ideal de referência.</p>
+            </header>
+
+            <form id="tool-form" class="tool-form" novalidate>
+                <div class="field">
+                    <label for="altura">Altura (m)</label>
+                    <input id="altura" name="altura" type="number" class="input-control" step="any" min="0" inputmode="decimal" placeholder="Ex.: 1.72" required>
+                    <span class="field-hint">Informe a altura em metros (ex.: 1.72).</span>
+                </div>
+
+                <fieldset class="radio-group">
+                    <legend class="field-legend">Sexo biológico</legend>
+                    <div class="radio-options">
+                        <div class="radio-card">
+                            <input type="radio" id="masculino" name="genero" value="masculino">
+                            <label for="masculino">Masculino</label>
+                        </div>
+                        <div class="radio-card">
+                            <input type="radio" id="feminino" name="genero" value="feminino">
+                            <label for="feminino">Feminino</label>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <div class="form-actions">
+                    <button type="button" id="btn-reset" class="btn btn-secondary">Limpar</button>
+                    <button type="submit" class="btn btn-primary">Calcular Peso Ideal</button>
+                </div>
+            </form>
+
+            <section id="result" class="result-panel" aria-live="polite">
+                <p class="result-placeholder">Preencha os dados acima para ver o resultado.</p>
+            </section>
+        </main>
+    </div>
+</body>
+
+</html>
